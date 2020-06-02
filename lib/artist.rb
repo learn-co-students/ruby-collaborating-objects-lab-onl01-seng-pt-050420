@@ -1,3 +1,4 @@
+require 'pry'
 class Artist 
   
   attr_accessor :name, :artist
@@ -28,7 +29,12 @@ class Artist
   end
   
   def print_songs
-    Song.all.select{|song| song.artist == self}
+    x = songs
+    i = 0 
+    while i < x.length do  
+      puts x[i].name
+      i += 1 
+    end
 
   end
   
