@@ -4,15 +4,13 @@ class MP3Importer
 
   def initialize(path)
     @path = path
-    import(path)
   end
 
   def files
-    files = Dir.entries("./spec/fixtures/mp3s").select{|filename| filename.include?(".mp3")}
+    @files ||= Dir.glob("#{path}/*.mp3").collect{ |f| f.gsub("#{path}/", "") }
   end
 
-  def import(list_of_filenames)
-   # files = Dir.entries(list_of_filenames).select{|filename| filename.include?(".mp3")}
+  def import
     files.each{ |filename| Song.new_by_filename(filename) }
   end
 end
